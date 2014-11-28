@@ -62,6 +62,12 @@ config TEST_POWER
 	help
 	  This driver is used for testing. It's safe to say M here.
 
+config CHARGER_SMB345
+        tristate "SMB345 battery charger driver"
+        depends on I2C
+        help
+          Say Y here to enable support for battery charging with SMB345 chips.
+
 config BATTERY_DS2760
 	tristate "DS2760 battery driver (HP iPAQ & others)"
 	depends on W1 && W1_SLAVE_DS2760
@@ -453,5 +459,68 @@ config BATTERY_TEMP_CONTROL
 	help
 	  Say Y to enable battery temperature control for safty.
 	  It controls charging current depending on battery temperature.
+
+config BATTERY_ASUS_BQ27541
+	tristate "ASUS bq27541 battery driver"
+	depends on I2C
+	help
+	  Say Y here to enable support for batteries with BQ27541 chip.
+
+config LGE_PM
+	tristate "PM8921 LGE Feature"
+	depends on MFD_PM8921_CORE
+	default n
+	help
+	  Say Y here to enable support for pm8921 chip lge feature
+
+config LGE_PM_DEBUG
+	depends on LGE_PM
+	default n
+	bool "LGE Power debug"
+	help
+	  Say Y here to enable debugging messages for LGE power supply class
+	  and drivers.
+
+config LGE_PM_BATTERY_ID_CHECKER
+	depends on LGE_PM
+	default n
+	bool "LGE PM BATTERY ID CHECKER"
+	help
+	  LGE PM Battery Id Checker Configuration
+
+config LGE_CHARGER_TEMP_SCENARIO
+	depends on LGE_PM
+	default n
+	bool "LGE CHARGER TEMP SCENARIO Configuration"
+	help
+	  LGE CHARGER TEMP SCENARIO Configuration
+
+config LGE_WIRELESS_CHARGER
+	depends on LGE_PM
+	default n
+	bool "LGE WIRELESS CHARGER Configuration"
+	help
+	  LGE WIRELESS CHARGER Configuration
+
+config LGE_PM_ADP_CHG
+	depends on LGE_PM
+	default n
+	bool "LGE PM ADAPTIVE USB CHARGING CURRENT"
+	help
+	  Say Y here to enable support for LGE adaptive usb charging current
+
+config LGE_PM_LOW_BATT_CHG
+	depends on LGE_PM
+	default n
+	bool "LGE LOW VOLTAGE BATTERY CHARGING Configuration"
+	help
+	  LGE LOW VOLTAGE BATTERY CHARGING Configuration
+
+config LGE_PM_REMOVE_BATT
+	depends on LGE_PM
+	default n
+	bool "LGE PM REMOVABLE BATTERY Feature"
+	help
+	  Say Y here to enable support for LGE removable battery feature
 
 endif # POWER_SUPPLY
